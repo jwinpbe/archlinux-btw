@@ -869,7 +869,6 @@ Create `/etc/systemd/zram-generator.conf`:
 [zram0]
 zram-size = ram * 1.5
 compression-algorithm = zstd
-writeback-device = none
 
 # Aggressive swap pressure — push to zram early and hard
 [zram0.extra]
