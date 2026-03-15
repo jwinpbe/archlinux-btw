@@ -1075,6 +1075,15 @@ Enable SDDM:
 systemctl enable sddm
 ```
 
+Create a minimal Hyprland config:
+
+```bash
+mkdir -p ~/.config/hypr
+touch ~/.config/hypr/hyprland.conf
+```
+
+> We'll populate this file step by step as we install each component below. See the [Hyprland wiki](https://wiki.hyprland.org) for full reference.
+
 ---
 
 ### Pipewire (Audio)
@@ -1098,7 +1107,7 @@ systemctl --user enable pipewire pipewire-pulse wireplumber
 pacman -S polkit polkit-gnome
 ```
 
-Add to your Hyprland config to autostart the polkit agent:
+Add to `~/.config/hypr/hyprland.conf`:
 
 ```
 exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
@@ -1215,7 +1224,7 @@ session  optional  pam_gnome_keyring.so auto_start
 pacman -S network-manager-applet
 ```
 
-Autostart in Hyprland config:
+Add to `~/.config/hypr/hyprland.conf`:
 
 ```
 exec-once = nm-applet --indicator
