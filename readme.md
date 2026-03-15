@@ -599,7 +599,7 @@ rm -rf paru
 
 Configure paru to use `doas`:
 
-### ~/.config/paru/paru.conf
+### /etc/paru.conf
 
 ```ini
 [bin]
@@ -650,7 +650,7 @@ Then sync:
 pacman -Sy
 ```
 
-### ~/.config/paru/paru.conf
+### /etc/paru.conf
 
 ```ini
 [options]
