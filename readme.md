@@ -276,6 +276,8 @@ Many scripts and tools hardcode `sudo`. Add an alias to `~/.zshrc` post-install 
 alias sudo='doas'
 ```
 
+> This alias is a temporary workaround. After installing `opendoas-sudo` (see [paru section](#post-install-paru-aur-helper)), it provides a proper `sudo` symlink and the alias can be removed.
+
 ### Lock root account
 
 ```bash
@@ -575,6 +577,16 @@ ip link show wlan0
 
 ## Post-Install: paru (AUR Helper)
 
+Since we use `doas` instead of `sudo`, configure `makepkg` to use it for privilege escalation:
+
+### /etc/makepkg.conf
+
+```
+PACMAN_AUTH=(doas)
+```
+
+Then install paru:
+
 ```bash
 doas pacman -S git base-devel
 git clone https://aur.archlinux.org/paru.git
@@ -584,6 +596,23 @@ makepkg -si
 cd ..
 rm -rf paru
 ```
+
+Configure paru to use `doas`:
+
+### ~/.config/paru/paru.conf
+
+```ini
+[bin]
+Sudo = doas
+```
+
+Then install `opendoas-sudo` to provide a proper `sudo` symlink system-wide:
+
+```bash
+paru -S opendoas-sudo
+```
+
+> This replaces the `alias sudo='doas'` workaround in `~/.zshrc` — you can remove the alias after installing this package.
 
 ---
 
