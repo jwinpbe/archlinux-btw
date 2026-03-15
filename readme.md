@@ -1,4 +1,4 @@
-# Arch Linux — LUKS1 (/boot) + LUKS2 (/) + Btrfs
+# Arch Linux — Trust Nothing, Snapshot Everything
 
 ## Philosophy
 
