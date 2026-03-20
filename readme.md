@@ -1007,8 +1007,11 @@ Both `Setup Mode` and `Secure Boot` should show as enabled and off respectively 
 
 ```bash
 sbctl create-keys
-sbctl enroll-keys -m  # -m includes Microsoft keys, needed for dual boot with Windows
+sbctl enroll-keys -m  # -m includes Microsoft keys, which are needed for booting modern OpRom based devices.
 ```
+
+> [!NOTE]
+> Reference the [sbctl repository](https://github.com/Foxboron/sbctl/wiki/FAQ#option-rom) for more information.
 
 ### Sign the bootloader and kernels
 
@@ -1036,7 +1039,8 @@ Reboot, enable Secure Boot in firmware settings, and verify:
 sbctl status
 ```
 
-> Omit `-m` when enrolling keys if you are not dual booting Windows. Enrolling Microsoft keys is required for Windows to boot under Secure Boot.
+> [!CAUTION]
+> You risk soft bricking your system if you do not enroll your sbctl keys with -m. Ensure that your `sbctl status` looks correct before rebooting.
 
 > If GRUB updates overwrite the signed EFI binary, re-run `sbctl sign` or ensure the pacman hook is active (`sbctl` installs it automatically).
 
